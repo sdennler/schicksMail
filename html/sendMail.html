@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>sendMail</title>
+    <meta charset="UTF-8">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="sendMail.js"></script>
+
+</head>
+<body>
+
+    <div id="sendMailResponse"></div>
+    <form id="sendMail" action="sendMail.php" method="POST">
+      <p><input type="text" placeholder="Name" required name="name" id="sendMailName"></p>
+      <p><input type="email" placeholder="Email" required name="email" id="sendMailEmail"></p>
+      <p><input type="text" placeholder="Subject" name="subject" id="sendMailSubject"></p>
+      <p><input type="text" placeholder="Message" required name="message" id="sendMailMessage"></p>
+      <p><button type="submit">Send Message</button></p>
+    </form>
+
+</body>
+</html>
