@@ -63,7 +63,13 @@ class sendMailData{
         $email = filter_var(trim($input['email']), FILTER_SANITIZE_EMAIL);
         $subject = trim(str_replace(array("\r", "\n"), ' ', strip_tags($input['subject'])));
         $message = trim(strip_tags($input['message']));
-        if ( !$name | !filter_var($email, FILTER_VALIDATE_EMAIL) | !$message) {
+        $botDetected = isset($input['rd']) && $input['rd'] !== '';
+        if (
+            !$name
+            | !filter_var($email, FILTER_VALIDATE_EMAIL)
+            | !$message
+            | $botDetected
+        ) {
             $this->valid = false;
             $this->error = 'Some fields are not filled the way I like it. 😕';
         }
@@ -71,6 +77,7 @@ class sendMailData{
         $this->data['email'] = $email;
         $this->data['subject'] = $subject;
         $this->data['message'] = $message;
+        $this->data['botDetected'] = $botDetected;
     }
     public function isInvalid(){
         return !$this->valid;
