@@ -40,7 +40,7 @@ $mail->setFrom($emailFrom, $name);
 $mail->addAddress($emailTo, $name);
 
 if (!$mail->addReplyTo($input->get('email'), $input->get('name'))) {
-    displayError('There is some thing wrong whit your email. 😕', 400);
+    displayError('There is some thing wrong with your email. 😕', 400);
 }
 
 $mail->isHTML(false);
@@ -49,7 +49,7 @@ $mail->Subject = "Message via $name: ".$input->get('subject');
 $mail->Body = $input->body();
 
 if (!$mail->send()) {
-    displayError("I could not send your message 😭\nPleases try later or an other contact way.", $code);
+    displayError("I could not send your message 😭\nPleases try later or an other contact way.", 500);
 }
 displayError("Thank you for your message! 🙋\nI will answer soon.", 200);
 
