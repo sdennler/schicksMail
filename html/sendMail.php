@@ -4,7 +4,6 @@ $debug         = false;
 $emailTo       = '';
 $emailFrom     = '';
 $name          = '';
-$pathPHPMailer = '../PHPMailer-master/';
 
 
 if ($_SERVER["REQUEST_METHOD"] != "POST") {
@@ -13,11 +12,8 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
 
 
 use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
 
-require $pathPHPMailer.'src/Exception.php';
-require $pathPHPMailer.'src/PHPMailer.php';
-require $pathPHPMailer.'src/SMTP.php';
+require_once '../vendor/autoload.php';
 
 
 
