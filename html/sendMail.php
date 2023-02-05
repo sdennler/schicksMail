@@ -63,7 +63,7 @@ class sendMailData{
         $email = filter_var(trim($input['email']), FILTER_SANITIZE_EMAIL);
         $subject = trim(str_replace(array("\r", "\n"), ' ', strip_tags($input['subject'])));
         $message = trim(strip_tags($input['message']));
-        $botDetected = isset($input['rd']) && $input['rd'] !== '';
+        $botDetected = !isset($input['rd']) || $input['rd'] !== '';
         if (
             !$name
             | !filter_var($email, FILTER_VALIDATE_EMAIL)

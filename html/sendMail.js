@@ -17,10 +17,7 @@ $(function() {
         .done(function(response) {
             $(mesg).addClass('success');
             $(mesg).html(response.replace(/\n/g, '<br>'));
-            $('#sendMailName').val('');
-            $('#sendMailEmail').val('');
-            $('#sendMailSubject').val('');
-            $('#sendMailMessage').val('');
+            $(form)[0].reset();
         })
 
         .fail(function(data) {
