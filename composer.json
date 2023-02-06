@@ -1,5 +1,24 @@
 {
+    "name": "sdennler/schicksmail",
+    "description": "A simple send mail script / contact form for websites.",
+    "license": "MIT License",
+    "minimum-stability": "dev",
+    "type": "library",
     "require": {
+        "php": ">=8.0.0",
         "phpmailer/phpmailer": "^6.7"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "10.1.x-dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "SDennler\\schicksMail\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SDennler\\schicksMail\\Test\\": "test/"
+        }
     }
 }
