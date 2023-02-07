@@ -1,6 +1,6 @@
 $(function() {
-    var form = $('#sendMail');
-    var mesg = $('#sendMailResponse');
+    var form = $('#schicksMail');
+    var mesg = $('#schicksMailResponse');
 
     $(form).submit(function(event) {
         $(mesg).removeClass('error');
