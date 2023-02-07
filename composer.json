@@ -2,7 +2,7 @@
     "name": "schicksmail/schicksmail",
     "description": "A simple send mail script / contact form for websites.",
     "license": "MIT",
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "type": "library",
     "require": {
         "php": ">=8.0.0",
