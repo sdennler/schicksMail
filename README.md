@@ -1,6 +1,6 @@
 # schicksMail
 A simple send mail script / contact form for websites.
-The contact form is sent using JavaScript (using JQuery) to a backend which sends the mail.
+The contact form is sent using JavaScript (using JQuery) to a backend which sends the mail (using PHPMailer).
 
 ## Example
 There is an example in the `example` directory.
