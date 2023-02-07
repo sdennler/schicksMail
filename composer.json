@@ -1,7 +1,7 @@
 {
     "name": "schicksmail/schicksmail",
     "description": "A simple send mail script / contact form for websites.",
-    "license": "MIT License",
+    "license": "MIT",
     "minimum-stability": "dev",
     "type": "library",
     "require": {
