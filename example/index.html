@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>schicksMail simple example</title>
+    <meta charset="UTF-8">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="schicksMail.js"></script>
+
+</head>
+<body>
+
+    <div id="schicksMailResponse"></div>
+    <form id="schicksMail" action="schicksMail.php" method="POST">
+      <p><input type="text" placeholder="Name" required name="name" id="schicksMailName"></p>
+      <p><input type="email" placeholder="Email" required name="email" id="schicksMailEmail"></p>
+      <p><input type="text" placeholder="Subject" name="subject" id="schicksMailSubject"></p>
+      <p><input type="text" placeholder="Message" required name="message" id="schicksMailMessage"></p>
+      <p style="display:none;"><input type="text" placeholder="RD" name="rd" id="schicksMailRD"></p>
+      <p><button type="submit">Send Message</button></p>
+    </form>
+
+</body>
+</html>
