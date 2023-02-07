@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace SDennler\schicksMail\Validator;
+namespace schicksMail\schicksMail\Validator;
 
-use SDennler\schicksMail\Exception\SchicksMailException;
+use schicksMail\schicksMail\Exception\SchicksMailException;
 
 class ConfigValidator
 {

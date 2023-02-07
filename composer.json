@@ -1,5 +1,5 @@
 {
-    "name": "sdennler/schicksmail",
+    "name": "schicksmail/schicksmail",
     "description": "A simple send mail script / contact form for websites.",
     "license": "MIT License",
     "minimum-stability": "dev",
@@ -13,12 +13,12 @@
     },
     "autoload": {
         "psr-4": {
-            "SDennler\\schicksMail\\": "src/"
+            "schicksMail\\schicksMail\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "SDennler\\schicksMail\\Test\\": "test/"
+            "schicksMail\\schicksMail\\Test\\": "test/"
         }
     }
 }

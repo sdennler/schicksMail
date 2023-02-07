@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace SDennler\schicksMail\Test\Unit\Validator;
+namespace schicksMail\schicksMail\Test\Unit\Validator;
 
 use PHPUnit\Framework\TestCase;
-use SDennler\schicksMail\Exception\SchicksMailException;
-use SDennler\schicksMail\Validator\ConfigValidator;
+use schicksMail\schicksMail\Exception\SchicksMailException;
+use schicksMail\schicksMail\Validator\ConfigValidator;
 
 class ConfigValidatorTest extends TestCase
 {

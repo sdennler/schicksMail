@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SDennler\schicksMail\Data;
+namespace schicksMail\schicksMail\Data;
 
 class SchicksMailData
 {

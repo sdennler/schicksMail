@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace SDennler\schicksMail\Controller;
+namespace schicksMail\schicksMail\Controller;
 
 use JetBrains\PhpStorm\NoReturn;
 use PHPMailer\PHPMailer\PHPMailer;
-use SDennler\schicksMail\Data\SchicksMailData;
-use SDennler\schicksMail\Validator\ConfigValidator;
+use schicksMail\schicksMail\Data\SchicksMailData;
+use schicksMail\schicksMail\Validator\ConfigValidator;
 
 class schicksMailController
 {
