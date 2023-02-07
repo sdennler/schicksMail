@@ -1,9 +1,9 @@
 <?php
 
-$config['debug']         = true;
-$config['emailTo']       = 'recipient@example.com';
-$config['emailFrom']     = $config['emailTo'];
-$config['name']          = 'Site Name';
+$config['emailTo']   = 'recipient@example.com';
+$config['emailFrom'] = $config['emailTo'];
+$config['name']      = 'Site Name';
+$config['debug']     = false;
 
 
 require_once '../vendor/autoload.php';
