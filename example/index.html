@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
     <script src="schicksMail.js"></script>
 
 </head>
@@ -16,8 +17,8 @@
       <p><input type="email" placeholder="Email" required name="email" id="schicksMailEmail"></p>
       <p><input type="text" placeholder="Subject" name="subject" id="schicksMailSubject"></p>
       <p><input type="text" placeholder="Message" required name="message" id="schicksMailMessage"></p>
-      <p style="display:none;"><input type="text" placeholder="RD" name="rd" id="schicksMailRD"></p>
-      <p><button type="submit">Send Message</button></p>
+      <div class="h-captcha" data-sitekey="[[your-sitekey]]" data-callback="captachSuccess" data-expired-callback="captachFailure" data-chalexpired-callback="captachFailure"></div>
+      <p><button id="schicksMailSubmit" type="submit" disabled>Send Message</button></p>
     </form>
 
 </body>

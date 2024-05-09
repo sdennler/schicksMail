@@ -6,6 +6,7 @@ namespace schicksMail\schicksMail\Controller;
 
 use JetBrains\PhpStorm\NoReturn;
 use PHPMailer\PHPMailer\PHPMailer;
+use schicksMail\schicksMail\BotDetector\BotDetector;
 use schicksMail\schicksMail\Data\SchicksMailData;
 use schicksMail\schicksMail\Validator\ConfigValidator;
 
@@ -15,7 +16,7 @@ class schicksMailController
     private SchicksMailData $data;
     private PHPMailer $mail;
 
-    public function __construct(array $config)
+    public function __construct(array $config, private ?BotDetector $botDetector = null)
     {
         $validator = new ConfigValidator();
         $this->config = $validator->validate($config);
@@ -32,7 +33,7 @@ class schicksMailController
 
     private function processInputData(): void
     {
-        $data = new SchicksMailData($_POST);
+        $data = new SchicksMailData($_POST, $this->botDetector);
         unset($_POST);
 
         if ($data->isInvalid()) {

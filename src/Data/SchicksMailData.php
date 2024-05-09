@@ -4,17 +4,19 @@ declare(strict_types=1);
 
 namespace schicksMail\schicksMail\Data;
 
+use schicksMail\schicksMail\BotDetector\BotDetector;
+
 class SchicksMailData
 {
     protected $data = array();
     protected $error = '';
     protected $valid = true;
-    public function __construct(Array $input){
+    public function __construct(Array $input, private ?BotDetector $botDetector = null){
         $name = trim(str_replace(array("\r", "\n"), ' ', strip_tags($input['name'])));
         $email = filter_var(trim($input['email']), FILTER_SANITIZE_EMAIL);
         $subject = trim(str_replace(array("\r", "\n"), ' ', strip_tags($input['subject'])));
         $message = trim(strip_tags($input['message']));
-        $botDetected = !isset($input['rd']) || $input['rd'] !== '';
+        $botDetected = isset($this->botDetector) ? $this->botDetector->isBot($input) : false;
         if (
             !$name
             | !filter_var($email, FILTER_VALIDATE_EMAIL)
