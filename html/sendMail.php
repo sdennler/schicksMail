@@ -1,5 +1,7 @@
 <?php
 
+// v0.1.0
+
 $debug         = false;
 $emailTo       = '';
 $emailFrom     = '';
