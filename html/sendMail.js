@@ -1,6 +1,7 @@
 $(function() {
     var form = $('#sendMail');
     var mesg = $('#sendMailResponse');
+    var button = $('#sendMail button:first');
 
     $(form).submit(function(event) {
         $(mesg).removeClass('error');
@@ -18,6 +19,7 @@ $(function() {
             $(mesg).addClass('success');
             $(mesg).html(response.replace(/\n/g, '<br>'));
             $(form)[0].reset();
+            $(button).prop("disabled", true);
         })
 
         .fail(function(data) {
@@ -31,3 +33,11 @@ $(function() {
 
     });
 });
+
+function captachSuccess() {
+    $('#sendMail button:first').prop("disabled", false);
+}
+
+function captachFailure() {
+    $('#sendMail button:first').prop("disabled", true);
+}

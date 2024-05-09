@@ -4,6 +4,9 @@ $debug         = false;
 $emailTo       = '';
 $emailFrom     = '';
 $name          = '';
+$hCaptchaSitekey = '[[your-sitekey]]';
+$hCaptchaSecret = '[[your-secret]]';
+
 $pathPHPMailer = '../PHPMailer-master/';
 
 
@@ -19,9 +22,14 @@ require $pathPHPMailer.'src/Exception.php';
 require $pathPHPMailer.'src/PHPMailer.php';
 require $pathPHPMailer.'src/SMTP.php';
 
+try{
+    $captcha = new captcha($hCaptchaSitekey, $hCaptchaSecret, $_POST);
+    $bot = !$captcha->validate();
+}catch(\Exception $e){
+    displayError(sprintf('There was a error with the captcha 😕 (%s)', $e->getMessage()), 400);
+}
 
-
-$input = new sendMailData($_POST);
+$input = new sendMailData($_POST, $bot);
 unset($_POST);
 
 if ($input->isInvalid()) {
@@ -49,7 +57,7 @@ $mail->Subject = "Message via $name: ".$input->get('subject');
 $mail->Body = $input->body();
 
 if (!$mail->send()) {
-    displayError("I could not send your message 😭\nPleases try later or an other contact way.", 500);
+    displayError("I could not send your message 😭\nPleases try later or an other contact way.", 400);
 }
 displayError("Thank you for your message! 🙋\nI will answer soon.", 200);
 
@@ -58,12 +66,11 @@ class sendMailData{
     protected $data = array();
     protected $error = '';
     protected $valid = true;
-    public function __construct(Array $input){
+    public function __construct(Array $input, bool $botDetected){
         $name = trim(str_replace(array("\r", "\n"), ' ', strip_tags($input['name'])));
         $email = filter_var(trim($input['email']), FILTER_SANITIZE_EMAIL);
         $subject = trim(str_replace(array("\r", "\n"), ' ', strip_tags($input['subject'])));
         $message = trim(strip_tags($input['message']));
-        $botDetected = !isset($input['rd']) || $input['rd'] !== '';
         if (
             !$name
             | !filter_var($email, FILTER_VALIDATE_EMAIL)
@@ -94,6 +101,48 @@ class sendMailData{
             $msg .= "$key: $value\n";
         }
         return $msg;
+    }
+}
+
+class captcha{
+    private const VERIFY_URL = 'https://api.hcaptcha.com/siteverify';
+    private string|false $response;
+    public function __construct(
+        private string $sitekey,
+        private string $secret,
+        array $input,
+    ){
+        $this->response = $input['h-captcha-response'] ?? false;
+    }
+    public function validate():bool{
+        if(empty($this->response)){
+            return false;
+        }
+
+        $options = [
+            'http' => [
+                'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+                'method' => 'POST',
+                'content' => http_build_query([
+                    'sitekey' => $this->sitekey,
+                    'secret' => $this->secret,
+                    'response' => $this->response,
+                ]),
+            ],
+        ];
+        $context = stream_context_create($options);
+
+        $response = file_get_contents(self::VERIFY_URL, false, $context);
+        if ($response === false) {
+            throw new RuntimeException('Captcha could not be validated');
+        }
+
+        $response = json_decode($response);
+        if (!is_object($response)) {
+            throw new RuntimeException('Captcha returned wrong value');
+        }
+
+        return $response->success;
     }
 }
 
